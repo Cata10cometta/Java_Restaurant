@@ -15,11 +15,14 @@ public class employeesDTO {
 @Column(name = "id")
 private int id_employees;
 
-@Column(name = "first_name", nullable = false,length = 30)
-private String first_name;
+@Column(name = "name", nullable = false,length = 30)
+private String name;
 
-@Column(name = "post",nullable = false,length = 50)
-private String post;
+@Column(name = "role", nullable = false,length = 30)
+private String role;
+
+@Column(name = "email",nullable = false,length = 50)
+private String email;
 
 public int getId_employees() {
     return id_employees;
@@ -29,20 +32,28 @@ public void setId_employees(int id_employees) {
     this.id_employees = id_employees;
 }
 
-public String getFirst_name() {
-    return first_name;
+public String getName() {
+    return name;
 }
 
-public void setFirst_name(String first_name) {
-    this.first_name = first_name;
+public void setName(String name) {
+    this.name = name;
 }
 
-public String getPost() {
-    return post;
+public String getRole() {
+    return role;
 }
 
-public void setPost(String post) {
-    this.post = post;
+public void setRole(String role) {
+    this.role = role;
+}
+
+public String getEmail() {
+    return email;
+}
+
+public void setEmail(String email) {
+    this.email = email;
 }
 
 

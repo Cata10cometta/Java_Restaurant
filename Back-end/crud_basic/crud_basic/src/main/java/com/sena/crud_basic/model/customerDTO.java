@@ -24,21 +24,21 @@ public class customerDTO {
 @Column(name="id")
 private int id_customer;
 
-@Column(name = "first_name",nullable = false,length = 30)
-private String first_name;
+@Column(name = "name",nullable = false,length = 30)
+private String name;
 //agregar la n cantidad de columnas
 @Column(name = "phone",nullable = false, length = 15)
 private String phone;
 
-@Column(name = "address",nullable = false, length = 255)
-private String address;
+@Column(name = "email",nullable = false, length = 255)
+private String email;
 
-public String getFirst_name() {
-    return first_name;
+public String getName() {
+    return name;
 }
 
-public void setFirst_name(String first_name) {
-    this.first_name = first_name;
+public void setName(String name) {
+    this.name = name;
 }
 
 public int getId_customer() {
@@ -57,14 +57,14 @@ public void setPhone(String phone) {
     this.phone = phone;
 }
 
-public String getAddress() {
-    return address;
+public String getEmail() {
+    return email;
 }
 
-public void setAddress(String address) {
-    this.address = address;
+public void setEmail(String email) {
+    this.email = email;
+}
+
 }
 
 
-
-}

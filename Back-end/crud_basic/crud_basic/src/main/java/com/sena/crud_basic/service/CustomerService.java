@@ -1,6 +1,10 @@
 package com.sena.crud_basic.service;
 
 
+import java.lang.classfile.ClassFile.Option;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,15 +31,40 @@ public class CustomerService {
      * adicional los requeridos
      */
 
-     public boolean save (customerDTO customer){
+     public List<customerDTO> findAllCustomerRepository() {
+        return ICustomerRepository.findAll();
+     }
+
+     public Optional<customerDTO> findByIdCustomerRepository(int id) {
+        return ICustomerRepository.findById(id);
+     }
+
+
+     public void save (customerDTO customer){
         /*
          * if(customer.getId==0)register o create 
          * else update
          */
         
         ICustomerRepository.save(customer);
-        return true;
+        
      }
+
+       public void update(int id, customerDTO customerUpdate) {
+         var customer = findByIdCustomerRepository(id);
+         if (customer.isPresent()){
+               customer.get().setName(customerUpdate.getName());
+               customer.get().setPhone(customerUpdate.getPhone());
+               customer.get().setEmail(customerUpdate.getEmail());
+               ICustomerRepository.save(customer.get());
+         }
+       }
+         public void delete(int id) {
+            var customer = findByIdCustomerRepository(id);
+            if (customer.isPresent()){
+                  ICustomerRepository.delete(customer.get());
+            }
+         }
 
 
 }

@@ -14,14 +14,14 @@ public class productsDTO {
 @Column(name = "id")
 private int id_products;
 
-@Column(name = "first_name",nullable = false,length =100)
-private String first_name;
+@Column(name = "name",nullable = false,length =100)
+private String name;
 
 @Column(name = "price",nullable = false)
 private String price;
 
-@Column(name = "category", nullable = false, length = 50)
-private String category;
+@Column(name = "description", nullable = false, length = 50)
+private String description;
 
 public int getId_products() {
     return id_products;
@@ -31,12 +31,12 @@ public void setId_products(int id_products) {
     this.id_products = id_products;
 }
 
-public String getFirst_name() {
-    return first_name;
+public String getName() {
+    return name;
 }
 
-public void setFirst_name(String first_name) {
-    this.first_name = first_name;
+public void setName(String name) {
+    this.name = name;
 }
 
 public String getPrice() {
@@ -47,12 +47,12 @@ public void setPrice(String price) {
     this.price = price;
 }
 
-public String getCategory() {
-    return category;
+public String getDescription() {
+    return description;
 }
 
-public void setCategory(String category) {
-    this.category = category;
+public void setDescription(String description) {
+    this.description = description;
 }
 
 

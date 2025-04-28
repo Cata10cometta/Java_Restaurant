@@ -16,11 +16,10 @@ public class ordersDTO {
 @Column(name = "id")
 private int id_orders;
 
-@Column(name = "order_date",nullable = false, length = 20)
-private String order_date;
+@Column(name = "orderDate",nullable = false, length = 20)
+private String orderDate;
 
-@Column(name = "total", nullable = false)
-private String total;
+
 
 //relación
 @ManyToOne
@@ -39,20 +38,12 @@ public void setId_orders(int id_orders) {
     this.id_orders = id_orders;
 }
 
-public String getOrder_date() {
-    return order_date;
+public String getOrderDate() {
+    return orderDate;
 }
 
-public void setOrder_date(String order_date) {
-    this.order_date = order_date;
-}
-
-public String getTotal() {
-    return total;
-}
-
-public void setTotal(String total) {
-    this.total = total;
+public void setOrderDate(String orderDate) {
+    this.orderDate = orderDate;
 }
 
 public customerDTO getCustomer() {

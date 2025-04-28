@@ -1,59 +1,66 @@
 package com.sena.crud_basic.model;
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity(name = "detailOrder")
 public class detailOrderDTO {
 
-@Column(name = "amount", nullable = false)
-private String amount;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_DetailOrder", nullable = false)
+    private Long idDetailOrder;
 
-@Column(name =  "Subtotal", nullable = false)
-private String Subtotal;
+    @Column(name = "amount", nullable = false)
+    private String amount;
 
-@ManyToOne
-@JoinColumn(name = "id_Order")
-private ordersDTO order;
+    @Column(name = "Subtotal", nullable = false)
+    private String Subtotal;
 
-@ManyToOne
-@JoinColumn(name = "id_Product")
-private productsDTO products;
+    @ManyToOne
+    @JoinColumn(name = "id_Order")
+    private ordersDTO order;
 
-public String getAmount() {
-    return amount;
-}
+    @ManyToOne
+    @JoinColumn(name = "id_Product")
+    private productsDTO products;
 
-public void setAmount(String amount) {
-    this.amount = amount;
-}
+    public String getAmount() {
+        return amount;
+    }
 
-public String getSubtotal() {
-    return Subtotal;
-}
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
 
-public void setSubtotal(String subtotal) {
-    Subtotal = subtotal;
-}
+    public String getSubtotal() {
+        return Subtotal;
+    }
 
-public ordersDTO getOrder() {
-    return order;
-}
+    public void setSubtotal(String subtotal) {
+        Subtotal = subtotal;
+    }
 
-public void setOrder(ordersDTO order) {
-    this.order = order;
-}
+    public ordersDTO getOrder() {
+        return order;
+    }
 
-public productsDTO getProducts() {
-    return products;
-}
+    public void setOrder(ordersDTO order) {
+        this.order = order;
+    }
 
-public void setProducts(productsDTO products) {
-    this.products = products;
-}
+    public productsDTO getProducts() {
+        return products;
+    }
 
-
-
+    public void setProducts(productsDTO products) {
+        this.products = products;
+    }
 }
