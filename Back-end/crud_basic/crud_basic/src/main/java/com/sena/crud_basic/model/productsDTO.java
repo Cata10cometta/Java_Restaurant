@@ -18,7 +18,7 @@ private int id_products;
 private String name;
 
 @Column(name = "price",nullable = false)
-private String price;
+private double price;
 
 @Column(name = "description", nullable = false, length = 50)
 private String description;
@@ -39,11 +39,11 @@ public void setName(String name) {
     this.name = name;
 }
 
-public String getPrice() {
+public double getPrice() {
     return price;
 }
 
-public void setPrice(String price) {
+public void setPrice(double price) {
     this.price = price;
 }
 

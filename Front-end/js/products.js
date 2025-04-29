@@ -1,13 +1,23 @@
 const apiUrl = 'http://localhost:8080/api/v1/products/';
 
 // Función para listar productos
-async function fetchProducts() {
+async function fetchProducts(searchTerm = '') {
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) throw new Error('Error al listar productos');
 
     const data = await response.json();
-    renderProducts(data);
+
+    // Filtrar productos según el término de búsqueda
+    const filteredProducts = data.filter(product => {
+      const term = String(searchTerm || '').toLowerCase();
+      return (
+        product.id_products.toString().includes(term) ||
+        product.name.toLowerCase().includes(term)
+      );
+    });
+
+    renderProducts(filteredProducts);
   } catch (error) {
     console.error('Error:', error);
   }
@@ -85,7 +95,7 @@ async function updateProduct(id, product) {
 
     alert('Producto actualizado correctamente');
     fetchProducts();
-    document.getElementById('product-form').reset(); // Limpiar formulario
+    document.getElementById('product-form').reset();
   } catch (error) {
     console.error('Error:', error);
   }
@@ -97,12 +107,17 @@ async function removeProduct(id) {
 
   try {
     const response = await fetch(apiUrl + id, { method: 'DELETE' });
-    if (!response.ok) throw new Error('Error al eliminar producto');
+    if (!response.ok) throw new Error(response.status.toString());
 
     alert('Producto eliminado correctamente');
     fetchProducts();
   } catch (error) {
     console.error('Error:', error);
+    if (error.message === '409') {
+      alert('No se pudo eliminar el producto. Está relacionado con otros registros.');
+    } else {
+      alert('Ocurrió un error al eliminar el producto.');
+    }
   }
 }
 
@@ -110,21 +125,24 @@ async function removeProduct(id) {
 document.getElementById('product-form').addEventListener('submit', function (event) {
   event.preventDefault();
 
-  const id = document.getElementById('product-id').value; // Tomar el ID del producto
+  const id = document.getElementById('product-id').value;
   const name = document.getElementById('name').value;
   const description = document.getElementById('description').value;
   const price = document.getElementById('price').value;
 
-  // Crear el objeto producto
   const product = { name, description, price };
 
   if (id) {
-    // Si hay un ID, actualizamos el producto
     updateProduct(id, product);
   } else {
-    // Si no hay un ID, creamos un producto nuevo
     createProduct(product);
   }
+});
+
+// Evento para manejar búsqueda
+document.getElementById('search-btn').addEventListener('click', function () {
+  const searchTerm = document.getElementById('search-input').value;
+  fetchProducts(searchTerm);
 });
 
 // Cargar productos al iniciar

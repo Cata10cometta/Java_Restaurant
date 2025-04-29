@@ -1,13 +1,20 @@
-const apiUrl = 'http://localhost:8080/api/v1/customers/'; 
+const apiUrl = 'http://localhost:8080/api/v1/customers/';
 
 // Función para listar clientes
-async function fetchcustomer() {
+async function fetchcustomer(searchTerm = '') {
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) throw new Error('Error al listar clientes');
 
     const data = await response.json();
-    rendercustomer(data);
+
+    // Filtrar clientes si hay término de búsqueda
+    const filteredCustomers = data.filter(customer => {
+      return customer.id_customer.toString().includes(searchTerm) ||
+             customer.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+    rendercustomer(filteredCustomers);
   } catch (error) {
     console.error('Error:', error);
   }
@@ -106,7 +113,7 @@ async function removeCustomer(id) {
   }
 }
 
-// Evento para manejar el envío del formulario
+// Evento para manejar el envío del formulario con validación de teléfono
 document.getElementById('customer-form').addEventListener('submit', function (event) {
   event.preventDefault();
 
@@ -114,6 +121,13 @@ document.getElementById('customer-form').addEventListener('submit', function (ev
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const phone = document.getElementById('phone').value;
+
+  // Validación de teléfono (6 a 10 dígitos)
+  const phoneRegex = /^\d{6,10}$/;
+  if (!phoneRegex.test(phone)) {
+    alert('El teléfono debe tener entre 6 y 10 dígitos numéricos.');
+    return;
+  }
 
   const customer = { name, email, phone };
 
@@ -124,5 +138,16 @@ document.getElementById('customer-form').addEventListener('submit', function (ev
   }
 });
 
+// Evento para manejar búsqueda
+document.getElementById('search-btn').addEventListener('click', function () {
+  const searchTerm = document.getElementById('search-input').value;
+  fetchcustomer(searchTerm);
+});
+
 // Cargar clientes al iniciar
-window.onload = fetchcustomer;
+window.onload = () => fetchcustomer();
+
+// Restringir la entrada del campo teléfono a solo números
+document.getElementById('phone').addEventListener('input', function () {
+  this.value = this.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea número
+});

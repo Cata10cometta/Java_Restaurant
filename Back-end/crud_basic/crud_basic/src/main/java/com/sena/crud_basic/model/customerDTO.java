@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
  * Para indicar que la clase es un modelo, se utiliza la anotación 
  * bean @Entity
  */
-@Entity(name="customer")
+@Entity(name="customers")
 public class customerDTO {
 /*
  * DTO= Data transfer Object

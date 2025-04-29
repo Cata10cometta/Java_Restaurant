@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Empleados - Sistema Gourmet</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/employees.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/employees.css"/>
 </head>
 <body>
   <!-- Navbar -->
@@ -20,24 +20,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="products.html">Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="orders.html">Pedidos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="customers.html">Clientes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="employees.html">Empleados</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="detailOrders.html">Detalle Pedidos</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="orders.html">Pedidos</a></li>
+          <li class="nav-item"><a class="nav-link" href="customers.html">Clientes</a></li>
+          <li class="nav-item"><a class="nav-link active" href="employees.html">Empleados</a></li>
+          <li class="nav-item"><a class="nav-link" href="detailOrders.html">Detalle Pedidos</a></li>
         </ul>
       </div>
     </div>
@@ -70,40 +58,35 @@
         <h4 class="card-title mb-4" style="color: var(--primary-color);">
           <i class="fas fa-user-plus me-2"></i>Agregar Nuevo Empleado
         </h4>
-        
         <form id="employee-form" class="row g-3">
-          <input type="hidden" id="employee-id">
-          
+          <input type="hidden" id="employee-id" />
           <div class="col-md-4">
             <label for="name" class="form-label">Nombre del Empleado</label>
             <div class="input-group">
               <span class="input-group-text" style="background-color: var(--primary-color); color: white;">
                 <i class="fas fa-user"></i>
               </span>
-              <input type="text" id="name" class="form-control" placeholder="Ingrese el nombre" required>
+              <input type="text" id="name" class="form-control" placeholder="Ingrese el nombre" required />
             </div>
           </div>
-          
           <div class="col-md-4">
             <label for="role" class="form-label">Rol / Puesto</label>
             <div class="input-group">
               <span class="input-group-text" style="background-color: var(--primary-color); color: white;">
                 <i class="fas fa-briefcase"></i>
               </span>
-              <input type="text" id="role" class="form-control" placeholder="Cargo o puesto" required>
+              <input type="text" id="role" class="form-control" placeholder="Cargo o puesto" required />
             </div>
           </div>
-          
           <div class="col-md-4">
             <label for="email" class="form-label">Correo Electrónico</label>
             <div class="input-group">
               <span class="input-group-text" style="background-color: var(--primary-color); color: white;">
                 <i class="fas fa-envelope"></i>
               </span>
-              <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com" required>
+              <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com" required />
             </div>
           </div>
-          
           <div class="col-12 text-end mt-4">
             <button type="reset" class="btn btn-outline-secondary me-2">
               <i class="fas fa-redo me-1"></i>Limpiar
@@ -124,13 +107,12 @@
             <i class="fas fa-users me-2"></i>Lista de Empleados
           </h4>
           <div class="input-group" style="max-width: 300px;">
-            <input type="text" class="form-control" placeholder="Buscar empleado...">
-            <button class="btn btn-outline-secondary" type="button">
+            <input type="text" class="form-control" placeholder="Buscar empleado..." id="search-input"/>
+            <button class="btn btn-outline-secondary" type="button" id="search-btn">
               <i class="fas fa-search"></i>
             </button>
           </div>
         </div>
-        
         <div class="table-responsive">
           <table class="table table-hover">
             <thead>
@@ -143,27 +125,7 @@
               </tr>
             </thead>
             <tbody id="employee-table-body">
-              <!-- Demo data (will be replaced by JS) -->
-              <tr>
-                <td>1</td>
-                <td>Juan Pérez</td>
-                <td>Chef Principal</td>
-                <td>juan.perez@lacocina.com</td>
-                <td class="text-center">
-                  <button class="btn action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                  <button class="btn action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>María González</td>
-                <td>Gerente</td>
-                <td>maria.gonzalez@lacocina.com</td>
-                <td class="text-center">
-                  <button class="btn action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                  <button class="btn action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                </td>
-              </tr>
+              <!-- Empleados se insertan aquí con JS -->
             </tbody>
           </table>
         </div>
@@ -172,7 +134,7 @@
   </div>
 
   <!-- Footer -->
-  <footer>
+  <footer class="bg-dark text-white text-center py-3 mt-5">
     <div class="container">
       <p class="mb-0">&copy; 2025 Sistema Gourmet La Cocina | Todos los derechos reservados</p>
     </div>

@@ -26,8 +26,8 @@ function renderOrders(orders) {
     const row = `
       <tr>
         <td>${order.id_orders}</td>
-        <td>${order.customer?.name || ''}</td>
-        <td>${order.employees?.name || ''}</td>
+        <td>${order.customer?.name || 'Sin cliente'}</td>
+        <td>${order.employees?.name || 'Sin empleado'}</td>
         <td>${order.orderDate}</td>
         <td class="text-center">
           <button class="btn btn-primary btn-sm" onclick="loadOrder(${order.id_orders})">
@@ -70,8 +70,8 @@ async function loadOrder(id) {
 
     const order = await response.json();
     document.getElementById('order-id').value = order.id_orders;
-    document.getElementById('customer').value = order.customer.id_customers;
-    document.getElementById('employees').value = order.employees.id_employees;
+    document.getElementById('customer').value = order.customer?.id_customer || '';
+    document.getElementById('employees').value = order.employees?.id_employees || '';
     document.getElementById('orderDate').value = order.orderDate;
   } catch (error) {
     console.error('Error:', error);
@@ -121,14 +121,14 @@ async function loadCustomers() {
     if (!response.ok) throw new Error('Error al listar clientes');
 
     const customers = await response.json();
-    const customerSelect = document.getElementById('customer');
-    customerSelect.innerHTML = '<option value="">Seleccione un cliente</option>';
+    const customersSelect = document.getElementById('customer');
+    customersSelect.innerHTML = '<option value="">Seleccione un cliente</option>';
 
     customers.forEach(customer => {
       const option = document.createElement('option');
-      option.value = customer.id_customers;
+      option.value = customer.id_customer;
       option.textContent = customer.name;
-      customerSelect.appendChild(option);
+      customersSelect.appendChild(option);
     });
   } catch (error) {
     console.error('Error:', error);
@@ -174,7 +174,7 @@ document.getElementById('order-form').addEventListener('submit', function (event
 
   const order = {
     orderDate,
-    customer: { id_customers: customerId },
+    customer: { id_customer: customerId },
     employees: { id_employees: employeeId }
   };
 

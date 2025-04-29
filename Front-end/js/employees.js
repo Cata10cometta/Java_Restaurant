@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:8080/api/v1/employees/'; 
+const apiUrl = 'http://localhost:8080/api/v1/employees/';
 
 // Función para listar empleados
 async function fetchEmployees() {
@@ -57,7 +57,7 @@ async function createEmployee(employee) {
   }
 }
 
-// Función para cargar empleado en el formulario para editar
+// Función para cargar un empleado en el formulario para editar
 async function loadEmployee(id) {
   try {
     const response = await fetch(apiUrl + id);
@@ -123,6 +123,33 @@ document.getElementById('employee-form').addEventListener('submit', function (ev
     createEmployee(employee);
   }
 });
+
+// ==========================
+// 🚀 BÚSQUEDA AGREGADA AQUÍ
+// ==========================
+
+// Función para buscar empleados por ID o nombre
+async function searchEmployees() {
+  const searchTerm = document.getElementById('search-input').value.trim().toLowerCase();
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) throw new Error('Error al obtener empleados');
+
+    const data = await response.json();
+    const filtered = data.filter(e =>
+      e.id_employees.toString().includes(searchTerm) ||
+      e.name.toLowerCase().includes(searchTerm)
+    );
+
+    renderEmployees(filtered);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Evento del botón de búsqueda
+document.getElementById('search-btn').addEventListener('click', searchEmployees);
 
 // Cargar empleados al iniciar
 window.onload = fetchEmployees;

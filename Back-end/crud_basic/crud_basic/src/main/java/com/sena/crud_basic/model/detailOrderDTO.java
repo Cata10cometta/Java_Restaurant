@@ -16,13 +16,11 @@ public class detailOrderDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_DetailOrder", nullable = false)
-    private Long idDetailOrder;
+    private int id_DetailOrder;
 
     @Column(name = "amount", nullable = false)
     private String amount;
 
-    @Column(name = "Subtotal", nullable = false)
-    private String Subtotal;
 
     @ManyToOne
     @JoinColumn(name = "id_Order")
@@ -40,13 +38,6 @@ public class detailOrderDTO {
         this.amount = amount;
     }
 
-    public String getSubtotal() {
-        return Subtotal;
-    }
-
-    public void setSubtotal(String subtotal) {
-        Subtotal = subtotal;
-    }
 
     public ordersDTO getOrder() {
         return order;
